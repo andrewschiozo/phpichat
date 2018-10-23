@@ -5,6 +5,25 @@ $(function(){
 		$('#mensagem').val('');
 	});
 
+	$('#mensagens').on('click', '.messageCheck', function(){
+		if($('.messageCheck:checkbox:checked').length > 0)
+		{
+			$('#tools .btn').attr('disabled', false);
+		}
+		else
+		{
+			$('#tools .btn').attr('disabled', true);
+		}
+	});
+
+	$('#btnApagarMensagens').click(function(){
+		var checked = $('.messageCheck:checkbox:checked');
+		$.each(checked, function(index, value){
+			$($(value).parents()[1]).remove();
+		});
+		$(this).attr('disabled', true);
+	});
+
 	function poll()
 	{
 		$.get('poll.php', function(data){
@@ -17,7 +36,8 @@ $(function(){
 
 			if (json.status) {
 				var messageBox = $('<div></div>');
-				messageBox.text(json.content);
+				messageBox.addClass('checkbox');
+				messageBox.append('<label><input type="checkbox" class="messageCheck" value="">' + json.content + '</label>')
 				$('#mensagens').append(messageBox);
 			}
 			else
