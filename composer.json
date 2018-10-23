@@ -1,5 +1,5 @@
 {
-  "name": ".../...",
+  "name": "PHP iChat Poll",
       "config": {
           "platform": {
               "php": "5.6.1"
