@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 session_write_close();
 ignore_user_abort(false);
 set_time_limit(40);
