@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Listen to File Update</title>
+</head>
+<body>
+
+<p><textarea id="message"></textarea><button type="button" onclick="sendMessage()">Enviar</button></p>
+
+
+<script type="text/javascript">
+	
+
+	function sendMessage()
+	{
+		var post = new XMLHttpRequest();
+		post.open('POST', 'poll/long-polling.php', true);
+		post.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		var message = document.getElementById("message").value;
+		post.send('message=' + message);
+	}
+
+	function poll()
+	{
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function() {
+			if (this.readyState === 4 && this.status === 200) {
+				if (this.status === 200) {
+					try {
+						var json = JSON.parse(this.responseText);
+					} catch {
+						poll();
+						return;
+					}
+					
+					if (json.status) {
+						var div = document.createElement("DIV");
+						document.body.appendChild(div);
+						div.innerHTML = json.content;
+					}
+					else
+					{
+						console.log(json.error);
+					}
+					poll();
+				} else {
+					poll();
+				}
+
+			}
+		}
+		ajax.open('GET', 'poll/long-polling.php', true);
+		ajax.send();
+	}
+	
+	poll();
+
+</script>
+
+</body>
+</html>
