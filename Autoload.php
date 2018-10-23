@@ -8,6 +8,6 @@ class Autoload
 	}
 	public function load($className)
 	{
-		require_once __DIR__ . DIRECTORY_SEPARATOR . $className . '.php'; 
+		require_once $className . '.php'; 
 	}
 }
