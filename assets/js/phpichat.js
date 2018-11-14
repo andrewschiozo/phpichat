@@ -24,12 +24,12 @@ $(function(){
 		$(this).attr('disabled', true);
 	});
 
-	// $('#mensagens').on('click', '.downloadFile', function(){
-	// 	var data = $($(this).parents()[0]).children(0).text();
-	// 	$.post('base64download.php', {base64encoded: data}, function(response){
-	// 		alert(response);
-	// 	})
-	// });
+	$('#mensagens').on('click', '.downloadFile', function(){
+		var data = $($(this).parents()[0]).children(0).text();
+		$.post('base64download.php', {base64encoded: data}, function(response){
+			alert(response);
+		})
+	});
 
 	function poll()
 	{
