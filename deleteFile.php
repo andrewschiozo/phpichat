@@ -1,7 +1,8 @@
 <?php
-
+echo '<pre>';
 if(file_exists('file.extension'))
 {
+	var_dump(scandir());
 	if(unlink('file.extension'))
 	{
 		echo 'Apagou';
@@ -10,6 +11,7 @@ if(file_exists('file.extension'))
 	{
 		echo 'Não apagou';
 	}
+	var_dump(scandir());
 }
 else
 {
