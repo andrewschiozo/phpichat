@@ -24,6 +24,13 @@ $(function(){
 		$(this).attr('disabled', true);
 	});
 
+	$('#mensagens').on('click', '.downloadFile', function(){
+		var data = $($(this).parents()[0]).children(0).text();
+		$.post('base64download.php', {base64encoded: data}, function(response){
+			alert(response);
+		})
+	});
+
 	function poll()
 	{
 		$.get('poll.php', function(data){
@@ -37,7 +44,7 @@ $(function(){
 			if (json.status) {
 				var messageBox = $('<div></div>');
 				messageBox.addClass('checkbox');
-				messageBox.append('<label><input type="checkbox" class="messageCheck" value="">' + json.content + '</label>')
+				messageBox.append('<label><input type="checkbox" class="messageCheck" value="">' + json.content + '</label><br><button type="button" class="btn btn-sm btn-dark downloadFile">Download</button>');
 				$('#mensagens').append(messageBox);
 			}
 			else
