@@ -1,9 +1,9 @@
 <?php
 echo '<pre>';
-if(file_exists('file.extension'))
+if(file_exists('file.png'))
 {
 	var_dump(scandir());
-	if(unlink('file.extension'))
+	if(unlink('file.png'))
 	{
 		echo 'Apagou';
 	}
